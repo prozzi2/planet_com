@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Космические тела</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="page">
+        <div class="content">
+            <h1 class="page-title">Космические тела</h1>
+            <p class="page-subtitle">Выбери карточку и открой подробную страницу объекта.</p>
+
+            <div class="cards">
+                {% for object_id, obj in objects.items() %}
+                    <a class="card card-link" href="{{ url_for('object_detail', object_id=object_id) }}">
+                        <div class="card-image-box">
+                            <img class="card-image" src="{{ url_for('static', filename='images/' + obj.image) }}" alt="{{ obj.name }}">
+                        </div>
+                        <h2>{{ obj.name }}</h2>
+                        <p>{{ obj.short_description }}</p>
+                    </a>
+                {% endfor %}
+            </div>
+
+            <div class="bottom-link">
+                <a class="button" href="/about">О создателе сайта</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

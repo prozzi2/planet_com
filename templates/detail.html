@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ obj.name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="page">
+        <div class="detail-container">
+            <img class="detail-image" src="{{ url_for('static', filename='images/' + obj.image) }}" alt="{{ obj.name }}">
+
+            <div class="detail-card">
+                <h1>{{ obj.name }}</h1>
+                <p class="detail-text">{{ obj.full_description }}</p>
+
+                <h2>Интересные факты</h2>
+                <ul class="facts-list">
+                    {% for fact in obj.facts %}
+                        <li>{{ fact }}</li>
+                    {% endfor %}
+                </ul>
+
+                <h2>Физические данные</h2>
+                <div class="data-list">
+                    {% for key, value in obj.physical_data.items() %}
+                        <p><strong>{{ key }}:</strong> {{ value }}</p>
+                    {% endfor %}
+                </div>
+
+                <h2>Кто открыл и когда</h2>
+                <p class="detail-text">{{ obj.discovery }}</p>
+
+                <h2>Польза и значение</h2>
+                <p class="detail-text">{{ obj.benefit }}</p>
+
+                <div class="detail-buttons">
+                    <a class="button" href="/">На главную</a>
+                    <a class="button secondary-button" href="/about">О сайте</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
